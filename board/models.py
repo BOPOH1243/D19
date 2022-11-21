@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 
 class Category(models.Model):
@@ -8,7 +9,7 @@ class Category(models.Model):
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     header = models.CharField(max_length=64, default='default')
-    text = models.TextField(default='default', )
+    content = RichTextUploadingField()
     created_at = models.DateTimeField(auto_now_add=True, editable=False, )
     updated_at = models.DateTimeField(auto_now=True, editable=True, )
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
