@@ -3,7 +3,7 @@ from django import forms
 # Register your models here.
 from ckeditor.widgets import CKEditorWidget
 
-from .models import Post
+from .models import Post, Category
 
 class PostAdminForm(forms.ModelForm):
     content = forms.CharField(widget=CKEditorWidget())
@@ -13,5 +13,10 @@ class PostAdminForm(forms.ModelForm):
 
 class PostAdmin(admin.ModelAdmin):
     form = PostAdminForm
+    list_display = ['header', 'author', 'category', 'created_at', 'updated_at']
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name']
 
 admin.site.register(Post, PostAdmin)
+admin.site.register(Category, CategoryAdmin)
