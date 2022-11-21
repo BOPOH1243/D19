@@ -125,7 +125,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR/'static'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'
-CKEDITOR_UPLOAD_PATH = '/CKEDITOR_UPLOAD_PATH/'
+CKEDITOR_UPLOAD_PATH = BASE_DIR/'CKEDITOR_UPLOAD_PATH'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
