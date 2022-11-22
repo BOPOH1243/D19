@@ -1,0 +1,28 @@
+{% extends 'default.html' %}
+{% load custom_tags %}
+{% block content %}
+        <div class="hero-unit">
+          <h1>{{post.header}}</h1>
+          <div>{{post.content|safe}}</div>
+          {%if user == post.author%}
+          <p>
+            <a href="delete/" class="btn btn-primary btn-large">
+              удалить
+            </a>
+          </p>
+            <p>
+            <a href="editpost/" class="btn btn-primary btn-large">
+              изменить
+            </a>
+          </p>
+          {% else %}
+          <p>
+            <button>
+            <a href="call/" class="btn btn-primary btn-large">
+              Отозваться
+            </a>
+            </button>
+          </p>
+          {% endif %}
+        </div>
+{% endblock %}

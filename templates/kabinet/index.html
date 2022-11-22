@@ -1,7 +1,26 @@
 {% extends "default.html" %}
 
 {% block content %}
-<h2>Страница авторизованного пользователя {{request.user.username}}</h2>
-<div> Здесь может содержаться персональная информация для каждого пользователя </div>
-<button> <a href="/sign/logout/">Выйти</a> </button>
+
+        <div class="hero-unit">
+          <h1>Страница авторизованного пользователя {{request.user.username}}</h1>
+          <div>Здесь может содержаться персональная информация для каждого пользователя </div>
+          <p>
+            <a href="myposts/" class="btn btn-primary btn-large">
+              Мои посты
+            </a>
+          </p>
+            <p>
+            <a href="myresponses/" class="btn btn-primary btn-large">
+              Мои отклики
+            </a>
+          </p>
+          <p>
+            <a href="myresponses/" class="btn btn-primary btn-large">
+              Отклики на мои посты(в разработке)
+            </a>
+          </p>
+        </div>
+
+<button> <a class="btn btn-secondary btn-large" href="/sign/logout/">Выйти</a> </button>
 {% endblock %}

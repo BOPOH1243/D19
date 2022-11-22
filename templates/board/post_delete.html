@@ -1,0 +1,14 @@
+{% extends 'default.html' %}
+{% block content %}
+<h1>delete post</h1>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>delete post:</p>
+    <p>name:{{object.header}}</p>
+    <p>text:{{object.content|safe}}</p>
+    <p>created at: {{object.created_at}} updated at:{{object.updated_at}}</p>
+    <p>category: {{object.category.name}}</p>
+    <input type="submit" value="Delete"/>
+</form>
+{% endblock content %}

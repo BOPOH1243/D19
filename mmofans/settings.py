@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'board',
     #эдитор для картинки в тексте
     'ckeditor',
+    'ckeditor_uploader',
+    'django.forms',
     #какая-то херня
     'django.contrib.sites',
     #авторизация
@@ -133,10 +135,13 @@ USE_TZ = True
 
 """static"""
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR/'static'
+STATIC_ROOT = BASE_DIR/'static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR/'media'
-CKEDITOR_UPLOAD_PATH = BASE_DIR/'CKEDITOR_UPLOAD_PATH'
+MEDIA_ROOT = BASE_DIR/'media/'
+CKEDITOR_UPLOAD_PATH ='uploads'
+STATICFILES_DIRS = [
+    BASE_DIR / "mmofans/static",
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
