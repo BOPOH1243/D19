@@ -37,14 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #мои приложения
+    'kabinet',
     'board',
+    #эдитор для картинки в тексте
     'ckeditor',
-
+    #какая-то херня
     'django.contrib.sites',
-
+    #авторизация
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    #фильтрация
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -139,7 +144,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 """sign"""
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/kabinet/'
 SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = [
