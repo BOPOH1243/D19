@@ -4,7 +4,8 @@
         <div class="hero-unit">
           <h1>{{response.post.header}}</h1>
           <div>{{response.post.content|safe}}</div>
-          <div>{{response.text}}</div>
+          <p>текст:{{response.text}}</p>
+          <p>Откликнулся: {{response.user}}({{response.user.email}})</p>
           {%if response.submit%}
           <p>
             <button>

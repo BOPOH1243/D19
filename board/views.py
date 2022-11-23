@@ -8,6 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
 
 class PostsListView(ListView):
     model = Post
@@ -135,7 +137,18 @@ class ResponseDetailView(LoginRequiredMixin, DetailView):
 def submit_response(request,pk):
     user = request.user
     response = Response.objects.get(pk=pk)
-    if response.post.author == user:
+    if response.post.author == user and response.submit==False:
         response.tosubmit()
         response.save()
+        msg = EmailMultiAlternatives(
+            subject=f'отклик {response}',
+            body=f'дорогой {response.user}, пользователь {user} принял твой отклик',  # это то же, что и message
+            from_email=settings.EMAIL_HOST_USER,
+            to=[response.user.email],  # это то же, что и recipients_list
+        )
+        try:
+            msg.send()
+            print('мессага отправлена')
+        except:
+            pass
     return redirect('/kabinet/mypostresponses/')
