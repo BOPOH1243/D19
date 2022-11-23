@@ -1,0 +1,26 @@
+{% extends 'default.html' %}
+{% load custom_tags %}
+{% block content %}
+        <div class="hero-unit">
+          <h1>{{response.post.header}}</h1>
+          <div>{{response.post.content|safe}}</div>
+          <div>{{response.text}}</div>
+          {%if response.submit%}
+          <p>
+            <button>
+            <a href="#" class="btn btn-primary btn-large">
+              Принят
+            </a>
+            </button>
+          </p>
+          {% else %}
+                    <p>
+            <button>
+              <a href="{{response.pk}}/submit/" class="btn btn-primary btn-large">
+              Принять
+              </a>
+            </button>
+          </p>
+          {% endif %}
+        </div>
+{% endblock %}

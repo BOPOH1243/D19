@@ -18,8 +18,10 @@ from django.urls import path, re_path
 from django.urls import include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic import TemplateView
 
 urlpatterns = [
+    path('', TemplateView.as_view(template_name="default.html")),
     path('admin/', admin.site.urls),
     path('sign/', include('sign.urls')),
     path('kabinet/', include('kabinet.urls')),

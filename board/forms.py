@@ -1,6 +1,6 @@
 
 from django import forms
-from .models import Post
+from .models import *
 from ckeditor.widgets import CKEditorWidget
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -13,4 +13,13 @@ class PostForm(forms.ModelForm):
             'category',
             #'author',
             'content',
+        ]
+
+
+class ResponseForm(forms.ModelForm):
+
+    class Meta:
+        model = Response
+        fields = [
+            'text',
         ]

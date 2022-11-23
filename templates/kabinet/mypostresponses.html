@@ -1,0 +1,52 @@
+{% extends 'default.html' %}
+{% load custom_tags %}
+{% block content %}
+        {# Добавляем форму, которая объединяет набор полей, которые будут отправляться в запросе #}
+   <form class="col-lg-6 text-lg-right" action="" method="get">
+       {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
+       {{ filterset.form.as_p }}
+       {# Добавим кнопку отправки данных формы #}
+       <input type="submit" value="Найти" />
+   </form>
+
+
+<h1>Мои отклики</h1>
+<ul class="list-group">
+    {% for response in responses %}
+    <li class="list-group-item">
+        <p>Отклик</p>
+            <button type="button"><a class="btn btn-primary btn-large" href="/board/responses/{{response.pk}}">{{response.post.header}}</a></button>
+
+
+        {% if response.submit %}
+        <button type="button" class="btn btn-success">Принят</button>
+        {% else %}
+        <button type="button" class="btn btn-danger"><a href="/board/responses/{{response.pk}}/submit">принять</a></button>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+
+{% block pagination %}
+   {% if page_obj.has_previous %}
+       {# Для каждой ссылки пагинации указываем обработку через новый тег #}
+       <a href="?{% url_replace page=1 %}">1</a>
+       {% if page_obj.previous_page_number != 1 %}
+           ...
+           <a href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
+       {% endif %}
+   {% endif %}
+
+   {{ page_obj.number }}
+
+   {% if page_obj.has_next %}
+       <a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
+       {% if paginator.num_pages != page_obj.next_page_number %}
+           ...
+           <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
+       {% endif %}
+   {% endif %}
+{% endblock %}
+
+{% endblock %}

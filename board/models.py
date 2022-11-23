@@ -26,15 +26,17 @@ class Post(models.Model):
         )
 
     def get_responses(self):
-        return Response.objects.filter(pk=self.pk)
+        return Response.objects.filter(post=self)
 
 class Response(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField(default='default',)
-    submit = models.BooleanField(blank=True)
+    submit = models.BooleanField(default=False)
 
+    def tosubmit(self):
+        self.submit = True
+        self.save()
 
-
-
-
+    def __str__(self):
+        return f'{self.post}, {self.user}, {self.text}'

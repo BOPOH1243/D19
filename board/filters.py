@@ -1,6 +1,6 @@
 
 from django_filters import FilterSet, ModelChoiceFilter, ModelMultipleChoiceFilter
-from .models import Post, Category
+from .models import *
 from django_filters import *
 from django import forms
 class PostFilter(FilterSet):
@@ -28,4 +28,12 @@ class PostFilter(FilterSet):
             #'created_at':[
             #    'gt'
             #],
+        }
+
+class ResponseFilter(FilterSet):
+    class Meta:
+        model = Response
+        fields = {
+            'text':['icontains'],
+            'submit':['exact'],
         }
